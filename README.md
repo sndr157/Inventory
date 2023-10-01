@@ -20,7 +20,7 @@ Welcome to the **Inventory Management Application!** An amazing, easy-to-use app
 - **Expiry Check** ❌ : Get informed about expired products based on their expiration date and the current date mentioned in the `current_date.txt` file.
 - 
 
-## How To Use? 💡 🛠️: I refer you to my Run_App.md file for detail information.
+## How To Use? 💡 🛠️: Please, refer you to my Run_App.md file for detail information.
  
 
 
