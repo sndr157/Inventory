@@ -174,4 +174,7 @@ python superpy.py profit --start-date 2020-08-18
 
 The output will display the total revenue and profit from "2020-08-18" to "9999-01-01".
 
+## **Manage Superpy img**
+![image](https://github.com/sndr157/Superpy11/assets/127830026/94301e05-a0ea-4c47-8fca-d19a617c4663)
+
 
