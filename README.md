@@ -1,4 +1,4 @@
-# Project "Superpy" 🚀 
+# Project "Superpy11" 🚀 
 
 This project engaged advanced Python skills, emphasizing understanding Command Line Interfaces (CLI) 🖥️, independent logic flow design 📈, and incorporation of new Python modules 🐍. The centerpiece of the development was a CLI, enabling seamless user interaction through text-based commands 📜. Translating the project's tea into a functional program was achieved through an independent logic flow design. To enhance the application's functionality and adaptability, we integrated new Python modules. This intricate process of stitching together key programming ingredients made the project both challenging and rewarding, significantly sharpening my technical acuity 🔧💡.
 
