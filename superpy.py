@@ -70,3 +70,7 @@ def run_cli(parser):
         args.func(**args_dict)
     else:
         parser.print_help()
+
+if __name__ == "__main__":
+    cli_parser = setup_cli_parser()
+    run_cli(cli_parser)
