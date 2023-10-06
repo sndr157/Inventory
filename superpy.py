@@ -6,27 +6,10 @@ from modules.inventory import display_inventory
 from modules.expire import display_expired
 from modules.sold import show_sold
 from modules.profit import show_profit
-import datetime
+from modules.date import set_date, add_date, get_date
 
 __winc_id__ = "a2bc36ea784242e4989deb157d527ba0"
 __human_name__ = "superpy"
-
-
-def advance_time(days): 
-    advance_days = datetime.timedelta(days=days)
-    with open("current_date.txt", 'r+') as f:
-        current_date_string = f.read()
-        current_date = datetime.datetime.strptime(current_date_string, "%Y-%m-%d")
-        new_date = current_date + advance_days
-        f.seek(0)
-        f.write(new_date.strftime("%Y-%m-%d"))
-        f.truncate()
-
-def set_date(date):
-    with open("current_date.txt", 'r+') as f:
-        f.seek(0)
-        f.write(date)
-        f.truncate()
 
 # CLI argument parser by using argparse
 def setup_cli_parser():
@@ -38,12 +21,14 @@ def setup_cli_parser():
     parser_buy.add_argument('product_name', type=str, help='name of the product')
     parser_buy.add_argument('price', type=float, help='price of the product')
     parser_buy.add_argument('expiry', type=str, help='expiry date of the product (YYYY-MM-DD)')
+    parser_buy.add_argument('quantity', type=int, help='Quantity of Products bought')
     parser_buy.set_defaults(func=buy)
 
     # 'sell' command
     parser_sell = subparsers.add_parser('sell', help='sell a product')
     parser_sell.add_argument('product_name', type=str, help='name of the product')
     parser_sell.add_argument('price', type=float, help='price of the product')
+    parser_sell.add_argument('quantity', type=int, help='Number of Products to sell')
     parser_sell.set_defaults(func=sell)
 
     # 'inventory' command
@@ -66,16 +51,19 @@ def setup_cli_parser():
     parser_sold.add_argument('--end-date', default='9999-12-31', help='end date for sold report (YYYY-MM-DD)')
     parser_sold.set_defaults(func=show_sold)
 
-    # '--advance-time' command
-    parser_advance_time = subparsers.add_parser('advance-time', help='advance time in days')
-    parser_advance_time.add_argument('days', type=int, help='number of days to advance')
-    parser_advance_time.set_defaults(func=advance_time)
-
-    # '--set-date' command
-    parser_set_date = subparsers.add_parser('set-date', help='set date (YYYY-MM-DD)')
-    parser_set_date.add_argument('date', type=str, help='date to be set (YYYY-MM-DD)')
+    # 'set-date' command
+    parser_set_date = subparsers.add_parser('set_date', help='set default date')
+    parser_set_date.add_argument('--date')
     parser_set_date.set_defaults(func=set_date)
 
+    # 'add-date' command
+    parser_add_date = subparsers.add_parser('add_date', help='add days in the default date')
+    parser_add_date.add_argument('--days')
+    parser_add_date.set_defaults(func=add_date)
+
+    # 'get-date' command
+    parser_get_date = subparsers.add_parser('get_date', help='show the default date set')
+    parser_get_date.set_defaults(func=get_date)
 
     return parser
 
