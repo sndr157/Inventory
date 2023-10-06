@@ -10,6 +10,23 @@ from modules.profit import show_profit
 __winc_id__ = "a2bc36ea784242e4989deb157d527ba0"
 __human_name__ = "superpy"
 
+
+def advance_time(days): 
+    advance_days = datetime.timedelta(days=days)
+    with open("current_date.txt", 'r+') as f:
+        current_date_string = f.read()
+        current_date = datetime.datetime.strptime(current_date_string, "%Y-%m-%d")
+        new_date = current_date + advance_days
+        f.seek(0)
+        f.write(new_date.strftime("%Y-%m-%d"))
+        f.truncate()
+
+def set_date(date):
+    with open("current_date.txt", 'r+') as f:
+        f.seek(0)
+        f.write(date)
+        f.truncate()
+
 # CLI argument parser by using argparse
 def setup_cli_parser():
     parser = argparse.ArgumentParser(description='Manage SuperPy.')
@@ -47,6 +64,17 @@ def setup_cli_parser():
     parser_sold.add_argument('--start-date', default='0001-01-01', help='start date for sold report (YYYY-MM-DD)')
     parser_sold.add_argument('--end-date', default='9999-12-31', help='end date for sold report (YYYY-MM-DD)')
     parser_sold.set_defaults(func=show_sold)
+
+    # '--advance-time' command
+    parser_advance_time = subparsers.add_parser('advance-time', help='advance time in days')
+    parser_advance_time.add_argument('days', type=int, help='number of days to advance')
+    parser_advance_time.set_defaults(func=advance_time)
+
+    # '--set-date' command
+    parser_set_date = subparsers.add_parser('set-date', help='set date (YYYY-MM-DD)')
+    parser_set_date.add_argument('date', type=str, help='date to be set (YYYY-MM-DD)')
+    parser_set_date.set_defaults(func=set_date)
+
 
     return parser
 
