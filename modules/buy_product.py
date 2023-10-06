@@ -22,18 +22,19 @@ def get_new_id():
     new_id = largest_id + 1
     return new_id
 
-def buy_product(product_name, price, expiry):
+def buy_product(product_name, price, expiry, quantity):
     # Check if provided expiry date is valid
     if not utils.is_valid_date(expiry):
         print("Invalid expiration ID. It must be formatted like YYYY-MM-DD.")
         return
 
     try:
-        new_id = get_new_id()
-        with open(config.BOUGHT_CSV_PATH, 'a', newline='') as file:
-            csv_writer = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-            csv_writer.writerow([new_id, product_name, config.CURRENT_DATE, price, expiry])
-            print(f"Record added for product {product_name}")
+        for _ in range(quantity):
+            new_id = get_new_id()
+            with open(config.BOUGHT_CSV_PATH, 'a', newline='') as file:
+                csv_writer = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+                csv_writer.writerow([new_id, product_name, config.CURRENT_DATE, price, expiry])
+        print(f"{quantity} x {product_name} Added")
     except PermissionError:
         print("You do not have permissions to write to this file.")
     except FileNotFoundError:
