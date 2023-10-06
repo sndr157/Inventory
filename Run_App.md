@@ -12,6 +12,28 @@ To manipulate the current date, format it in the "yyyy-mm-dd" pattern like the e
 2021-09-18
 ```
 
+## **Get Date
+```bash
+python superpy.py get_date
+```
+
+## **Set Date
+```bash
+python superpy.py set_date --date 2019-08-15
+```
+## **Advance Date 
+
+```bash
+python superpy.py add_date --days 3
+```
+
+## **Buy and Sell Quantity
+
+```bash
+python superpy.py buy lemon 20 2019-08-15 20
+python superpy.py sell lemon 50 4
+```
+
 ## **Buying a Product**
 To add a product to a store's inventory, use the 'buy' command. For additional help, use '-h':
 
